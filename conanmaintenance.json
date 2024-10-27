@@ -1,0 +1,42 @@
+[
+    {
+        "UpdateStageName":"Maintenance Script Download",
+        "UpdateSourcePlatform":"Linux",
+        "UpdateSource":"FetchURL",
+        "UpdateSourceData":"https://github.com/hackles/AMPTemplates/raw/main/scripts/maintenance.sh",
+        "UpdateSourceArgs":"maintenance.sh",
+        "UpdateSourceTarget":"{{$FullBaseDir}}",
+        "OverwriteExistingFiles":false,
+        "UpdateSourceConditionSetting":"ServerExecutable",
+        "UpdateSourceConditionValue":"_x64"
+    },
+    {
+        "UpdateStageName":"Maintenance Script Download",
+        "UpdateSourcePlatform":"Windows",
+        "UpdateSource":"FetchURL",
+        "UpdateSourceData":"https://github.com/hackles/AMPTemplates/raw/main/scripts/maintenance.cmd",
+        "UpdateSourceArgs":"maintenance.cmd",
+        "UpdateSourceTarget":"{{$FullBaseDir}}",
+        "OverwriteExistingFiles":false,
+        "UpdateSourceConditionSetting":"ServerExecutable",
+        "UpdateSourceConditionValue":"_x64"
+    },
+    {
+        "UpdateStageName": "Run Maintenance Script",
+        "UpdateSourcePlatform": "Linux",
+        "UpdateSource": "Executable",
+        "UpdateSourceData": "/bin/bash",
+        "UpdateSourceArgs": "-c \"chmod +x ./maintenance.sh; ./maintenance.sh",
+        "RunInBackground": true,
+        "SkipOnFailure": true
+    },
+    {
+        "UpdateStageName": "Run Maintenance Script",
+        "UpdateSourcePlatform": "Windows",
+        "UpdateSource": "Executable",
+        "UpdateSourceData": "cmd.exe",
+        "UpdateSourceArgs": "/C start ./maintenance.cmd",
+        "RunInBackground": true,
+        "SkipOnFailure": true
+    }
+]
