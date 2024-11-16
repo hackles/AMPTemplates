@@ -1,0 +1,38 @@
+[
+    {
+        "UpdateStageName": "Maintenance Script Download",
+        "UpdateSourcePlatform": "Linux",
+        "UpdateSource": "FetchURL",
+        "UpdateSourceData": "https://github.com/hackles/AMPTemplates/raw/main/scripts/maintenance.sh",
+        "UpdateSourceArgs": "maintenance.sh",
+        "UpdateSourceTarget": "{{$FullBaseDir}}ConanSandbox/Saved",
+        "OverwriteExistingFiles": false
+    },
+    {
+        "UpdateStageName": "Maintenance Script Download",
+        "UpdateSourcePlatform": "Windows",
+        "UpdateSource": "FetchURL",
+        "UpdateSourceData": "https://github.com/hackles/AMPTemplates/raw/main/scripts/maintenance.ps1",
+        "UpdateSourceArgs": "maintenance.cmd",
+        "UpdateSourceTarget": "{{$FullBaseDir}}ConanSandbox/Saved",
+        "OverwriteExistingFiles": false
+    },
+    {
+        "UpdateStageName": "Run Maintenance Script",
+        "UpdateSourcePlatform": "Linux",
+        "UpdateSource": "Executable",
+        "UpdateSourceData": "/bin/bash",
+        "UpdateSourceArgs": "-c \"chmod +x '{{$FullBaseDir}}/ConanSandbox/Saved/maintenance.sh'; {{$FullBaseDir}}/ConanSandbox/Saved/maintenance.sh\"",
+        "RunInBackground": true,
+        "SkipOnFailure": true
+    },
+    {
+        "UpdateStageName": "Run Maintenance Script",
+        "UpdateSourcePlatform": "Windows",
+        "UpdateSource": "Executable",
+        "UpdateSourceData": "powershell.exe",
+        "UpdateSourceArgs": "{{$FullBaseDir}}ConanSandbox/Saved/maintenance.ps1",
+        "RunInBackground": false,
+        "SkipOnFailure": false
+    }
+]
